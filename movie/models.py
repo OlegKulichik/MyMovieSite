@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 
@@ -56,21 +57,31 @@ class Movie(models.Model):
         Category, verbose_name="Категория", on_delete=models.SET_NULL, null=True
     )
     url = models.SlugField(max_length=130, unique=True)
-    draft = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title
+        return f"{self.url}"
 
-    def get_absolute_url(self):
-        return reverse('movie_detail', kwargs={'slug': self.url})
+
 
     class Meta:
         verbose_name = "Фильм"
         verbose_name_plural = "Фильмы"
 
+class Desired(models.Model):
+    user = models.ForeignKey(User, verbose_name="Пользователь", related_name="desired", on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, verbose_name="Фильм", related_name="desired", on_delete=models.CASCADE)
+
+    # def get_absolute_url(self):
+    #     return reverse('movie_detail', kwargs={'slug': self.movie})
+
+    def __str__(self):
+        return f"{self.movie}"
+
+    class Meta:
+        verbose_name = "Желаемое"
+        verbose_name_plural = "Желаемые"
 
 class Reviews(models.Model):
-    """Отзывы"""
     email = models.EmailField()
     name = models.CharField("Имя", max_length=100)
     text = models.TextField("Сообщение", max_length=5000)

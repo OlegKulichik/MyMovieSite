@@ -28,11 +28,6 @@ class UserRgisterForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
-class DesiredForm(forms.ModelForm): 
-    class Meta:
-        model = Movie
-        fields = ("draft",)
-
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Reviews

@@ -5,9 +5,9 @@ from django.views.generic.edit import UpdateView
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import login, logout
-
-from .models import Movie
-from .forms import DesiredForm, ReviewForm, UserRgisterForm, UserLoginForm
+from django.contrib.auth.models import User
+from .models import Movie, Desired
+from .forms import ReviewForm, UserRgisterForm, UserLoginForm
 
 def register(request):
     if request.method == "POST":
@@ -44,25 +44,25 @@ class MowiesView(View):
 class MowiesViewDesired(View):
     
     def get(self, request):
-        movie = Movie.objects.filter(draft=True)
+        movie = request.user.desired.all()
+        print(movie)
         return render(request, template_name="movie_desired.html", context={"movie_desired":movie})
 
 class MovieDetailView(View):
-
-    def get(self, request, slug):
-        movie = Movie.objects.get(url=slug)
-        return render(request, template_name="movie_detail.html", context={"movie": movie})
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["star_form"] = RatingForm()
         return context
 
+    def get(self, request, slug):
+        movie = Movie.objects.get(url=slug)
+        return render(request, template_name="movie_detaill.html", context={"movie": movie})
+
 class AddReview(View):
 
     def post(self, request, pk):
         form = ReviewForm(request.POST)
-        print(request.user.email)
         movie = Movie.objects.get(id=pk)
         if form.is_valid():
             form = form.save(commit=False)
@@ -73,10 +73,8 @@ class AddReview(View):
 class AddDesired(View):
 
     def post(self, request, pk):
-        form = DesiredForm(request.POST)
         movie = Movie.objects.get(id=pk)
-        movie.draft = True
-        movie.save()
+        Desired.objects.create(user=request.user, movie=movie)
         return redirect('/')
 
 
@@ -100,3 +98,14 @@ class AddStarRating(View):
             return HttpResponse(status=201)
         else:
             return HttpResponse(status=400)
+
+class Search(ListView):
+    paginate_by = 3
+
+    def get_queryset(self):
+        return Movie.objects.filter(title__icontains=self.request.GET.get("q"))
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["q"] = f'q={self.request.GET.get("q")}&'
+        return context
