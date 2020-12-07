@@ -45,7 +45,6 @@ class MowiesViewDesired(View):
     
     def get(self, request):
         movie = request.user.desired.all()
-        print(movie)
         return render(request, template_name="movie_desired.html", context={"movie_desired":movie})
 
 class MovieDetailView(View):
@@ -57,7 +56,7 @@ class MovieDetailView(View):
 
     def get(self, request, slug):
         movie = Movie.objects.get(url=slug)
-        return render(request, template_name="movie_detaill.html", context={"movie": movie})
+        return render(request, template_name="movie_detail.html", context={"movie": movie})
 
 class AddReview(View):
 

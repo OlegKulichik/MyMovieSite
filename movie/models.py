@@ -61,6 +61,8 @@ class Movie(models.Model):
     def __str__(self):
         return f"{self.url}"
 
+    def get_absolute_url(self):
+        return reverse('movie_detail', kwargs={'slug': self.url})
 
 
     class Meta:
@@ -70,9 +72,6 @@ class Movie(models.Model):
 class Desired(models.Model):
     user = models.ForeignKey(User, verbose_name="Пользователь", related_name="desired", on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, verbose_name="Фильм", related_name="desired", on_delete=models.CASCADE)
-
-    # def get_absolute_url(self):
-    #     return reverse('movie_detail', kwargs={'slug': self.movie})
 
     def __str__(self):
         return f"{self.movie}"
