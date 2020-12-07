@@ -1,39 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
-from django.views.generic.edit import UpdateView
 from django.shortcuts import redirect
-from django.contrib import messages
-from django.contrib.auth import login, logout
-from django.contrib.auth.models import User
 from .models import Movie, Desired
-from .forms import ReviewForm, UserRgisterForm, UserLoginForm
+from .forms import ReviewForm
 
-def register(request):
-    if request.method == "POST":
-        form = UserRgisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('/')
-    else:
-        form = UserRgisterForm()
-    return render(request, 'register.html', {'form': form})
 
-def user_login(request):
-    if request.method == "POST":
-        form = UserLoginForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('/')
-    else:
-        form = UserLoginForm()
-    return render(request, 'login.html', {'form': form})
-
-def user_logout(request):
-    logout(request)
-    return redirect('/')
 
 class MowiesView(View):
     
