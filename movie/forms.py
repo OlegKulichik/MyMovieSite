@@ -1,5 +1,5 @@
 from django import forms
-from .models import Movie, Reviews, RatingStar, Rating
+from .models import Movie, RatingStar, Rating, Reviews
 
 
 class RatingForm(forms.ModelForm):

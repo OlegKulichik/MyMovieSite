@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 from django.shortcuts import redirect
-from .models import Movie, Desired
+from .models import Movie
 from .forms import ReviewForm
 
 
@@ -13,11 +13,6 @@ class MowiesView(View):
         movie = Movie.objects.all()
         return render(request, template_name="movie_list.html", context={"movie_list":movie})
 
-class MowiesViewDesired(View):
-    
-    def get(self, request):
-        movie = request.user.desired.all()
-        return render(request, template_name="movie_desired.html", context={"movie_desired":movie})
 
 class MovieDetailView(View):
     
@@ -40,13 +35,6 @@ class AddReview(View):
             form.movie = movie
             form.save() 
         return redirect(movie.get_absolute_url())
-
-class AddDesired(View):
-
-    def post(self, request, pk):
-        movie = Movie.objects.get(id=pk)
-        Desired.objects.create(user=request.user, movie=movie)
-        return redirect('/')
 
 
 class AddStarRating(View):
