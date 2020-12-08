@@ -6,12 +6,13 @@ from .models import Movie
 
 
 
-class MowiesView(View):
-    
+class MoviesView(View):
+     
+    paginate_by = 1
+
     def get(self, request):
         movie = Movie.objects.all()
-        return render(request, template_name="movie_list.html", context={"movie_list":movie})
-
+        return render(request, "movie_list.html", context={"movie_list":movie})
 
 class MovieDetailView(View):
     
@@ -46,11 +47,14 @@ class AddStarRating(View):
         else:
             return HttpResponse(status=400)
 
-class Search(ListView):
+
+class Search(View):
+    
     paginate_by = 3
 
-    def get_queryset(self):
-        return Movie.objects.filter(title__icontains=self.request.GET.get("q"))
+    def get(self, request):
+        movie = Movie.objects.filter(title__icontains=self.request.GET.get("q"))
+        return  render(request, "movie_list.html", context={"movie_list":movie})
 
     # def get_context_data(self, *args, **kwargs):
     #     context = super().get_context_data(*args, **kwargs)
