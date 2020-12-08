@@ -3,7 +3,6 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 from django.shortcuts import redirect
 from .models import Movie
-from .forms import ReviewForm
 
 
 
@@ -24,17 +23,6 @@ class MovieDetailView(View):
     def get(self, request, slug):
         movie = Movie.objects.get(url=slug)
         return render(request, template_name="movie_detail.html", context={"movie": movie})
-
-class AddReview(View):
-
-    def post(self, request, pk):
-        form = ReviewForm(request.POST)
-        movie = Movie.objects.get(id=pk)
-        if form.is_valid():
-            form = form.save(commit=False)
-            form.movie = movie
-            form.save() 
-        return redirect(movie.get_absolute_url())
 
 
 class AddStarRating(View):
@@ -64,7 +52,7 @@ class Search(ListView):
     def get_queryset(self):
         return Movie.objects.filter(title__icontains=self.request.GET.get("q"))
 
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context["q"] = f'q={self.request.GET.get("q")}&'
-        return context
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super().get_context_data(*args, **kwargs)
+    #     context["q"] = f'q={self.request.GET.get("q")}&'
+    #     return context

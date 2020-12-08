@@ -24,7 +24,7 @@ urlpatterns = [
     path("", include("movie.urls")),
     path("accounts/", include("accountes.urls")),
     path("desired/", include("desired.urls")),
-    
+    path("reviews/", include("reviews.urls")),
 ]
 
 

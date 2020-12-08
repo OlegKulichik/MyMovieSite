@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 class Genre(models.Model):
 
     name = models.CharField("Имя", max_length=100)
-    description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
 
     def __str__(self):
@@ -23,7 +22,6 @@ class Genre(models.Model):
 class Category(models.Model):
 
     name = models.CharField("Категория", max_length=150)
-    description = models.TextField("Описание")
     url = models.SlugField(max_length=160, unique=True)
 
     def __str__(self):
@@ -94,15 +92,3 @@ class Rating(models.Model):
         verbose_name = "Рейтинг"
         verbose_name_plural = "Рейтинги"
 
-class Reviews(models.Model):
-    email = models.EmailField()
-    name = models.CharField("Имя", max_length=100)
-    text = models.TextField("Сообщение", max_length=5000)
-    movie = models.ForeignKey(Movie, verbose_name="фильм", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.name} - {self.movie}"
-
-    class Meta:
-        verbose_name = "Отзыв"
-        verbose_name_plural = "Отзывы"
