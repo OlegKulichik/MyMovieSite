@@ -10,22 +10,10 @@
 
             <label for="drop" class="toggle">Menu</label>
             <input type="checkbox" id="drop">
+            <form action="{% url 'filter' %}" method="get" name="filter"></form>
             <ul class="menu mt-2">
                 <li class="active"><a href="{% url 'home'%}">Главная</a></li>
                 <li class="active"><a href="{% url 'movie_desired'%}">Посмотреть позже</a></li>
-                <li>
-                    <!-- First Tier Drop Down -->
-                    <label for="drop-2" class="toggle">Категории <span
-                            class="fa fa-angle-down" aria-hidden="true"></span> </label>
-                    <a href="#">Категории <span class="fa fa-angle-down"
-                                                aria-hidden="true"></span></a>
-                    <input type="checkbox" id="drop-2">
-                    <ul>
-                        <li><a href="moviesingle.html">Фильмы</a></li>
-                        <li><a href="moviesingle.html">Сериалы</a></li>
-                        <li><a href="moviesingle.html">Мультфильмы</a></li>
-                    </ul>
-                </li>
                 <li>
                     {% if user.is_authenticated %}
                         <span>{{ user.username }}</span>
@@ -45,6 +33,7 @@
                     {% endif %}
                 </li>
             </ul>
+        </form>
         </nav>
         <!-- //nav -->
     </div>
