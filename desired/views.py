@@ -2,10 +2,18 @@ from django.shortcuts import render
 from .models import Movie, Desired
 from django.views.generic.base import View
 from django.shortcuts import redirect
+from django.views.generic import ListView, DetailView
+from movie.views import GenreYearCategory
 
 
 
-class MowiesViewDesired(View):
+# class MowiesViewDesired(GenreYearCategory, ListView):
+
+#     queryset = user.desired.all()
+#     template_name="movie_desired.html"
+
+
+class MowiesViewDesired(GenreYearCategory, View):
     
     def get(self, request):
         movie = request.user.desired.all()

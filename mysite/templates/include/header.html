@@ -1,9 +1,11 @@
+{% load static %}
 <header class="header">
     <div class="container-fluid px-lg-5">
         <!-- nav -->
         <nav class="py-4">
             <div id="logo">
-                <h1><a href="index.html" class="editContent"
+                <h1>
+                    <a href="{% url 'home'%}" class="active"
                        style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(252, 252, 252); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: Source Sans Pro;">MySite</a>
                 </h1>
             </div>
@@ -40,12 +42,36 @@
 </header>
 <!-- //header -->
 <!--/banner-->
-<div class="banner-info">
-    <p class="editContent">лучший сайт на django 3</p>
-    <h3 style="color:#000000" class="mb-4 editContent">Все о кино</h3>
-    <div class="ban-buttons">
+<body>
 
-
+  <div  class="slider">
+    <div class="slider__wrapper">
+      <div class="slider__item">
+        <div style="height: 500px;">
+            <li class="active"><a href="{% url 'last_movie'%}"><img src="{% static 'images/s3.jpg' %}"></a></li>
+        </div>
+      </div>
+      <div class="slider__item">
+        <div style="height: 500px;">
+            <li class="active"><a href="{% url 'last_movie'%}"><img src="{% static 'images/s4.jpg' %}"></a></li>
+        </div>
+      </div>
+      <div class="slider__item">
+        <div style="height: 500px;">
+            <li class="active"><a href="{% url 'last_movie'%}"><img src="{% static 'images/s5.jpg' %}"></a></li>
+        </div>
+      </div>
+      <div class="slider__item">
+        <div style="height: 500px;">
+            <li class="active"><a href="{% url 'last_movie'%}"><img src="{% static 'images/team2.jpg' %}"></a></li>
+        </div>
+      </div>
     </div>
-</div>
+    <a class="slider__control slider__control_left" href="#" role="button"></a>
+    <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>
+  </div>
+  
+  <script src="{% static 'js/slider.js' %}"></script>
+
+</body>
 <!--// banner-inner -->

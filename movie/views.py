@@ -27,6 +27,13 @@ class MoviesView(GenreYearCategory, ListView):
     template_name="movie_list.html"
     paginate_by = 3
 
+class LastMoviesView(GenreYearCategory, ListView):
+
+    model = Movie
+    queryset = Movie.objects.order_by("-id")[:5]
+    template_name="movie_last.html"
+    paginate_by = 3
+
 class MovieDetailView(GenreYearCategory, DetailView):
 
     model = Movie
@@ -34,13 +41,13 @@ class MovieDetailView(GenreYearCategory, DetailView):
     slug_field = "url"
     template_name="movie_detail.html"
     
-class Search(View):
+class Search(GenreYearCategory, ListView):
     
     paginate_by = 1
-
-    def get(self, request):
-        movie = Movie.objects.filter(title__icontains=self.request.GET.get("q"))
-        return  render(request, "movie_list.html", context={"movie_list":movie})
+    template_name="movie_list.html"
+    
+    def get_queryset(self):
+        return Movie.objects.filter(title__icontains=self.request.GET.get("q"))
 
 
 class FilterMoviesView(GenreYearCategory, ListView):
