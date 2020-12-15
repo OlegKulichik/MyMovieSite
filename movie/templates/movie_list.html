@@ -2,6 +2,9 @@
 {% block title %} {% endblock title %}
 {% block header %} bg1 {% endblock header %}
 {% block movie %}
+<div class="side-bar col-lg-3">
+    {% include 'include/sidebar.html' %}
+</div>
     <div class="left-ads-display col-lg-9">
         <div class="row">
             {% for movie in movie_list %}
@@ -16,23 +19,6 @@
                                     {{ movie.title }}
                                 </a>
                             </h4>
-                            <ul class="stars">
-                                <li><a href="#"><span class="fa fa-star"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star-half-o"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star-half-o"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                                <li><a href="#"><span class="fa fa-star-o"
-                                                      aria-hidden="true"></span></a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>

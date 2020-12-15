@@ -1,0 +1,29 @@
+{% extends 'base_movie.html' %}
+{% block title %} {% endblock title %}
+{% block header %} bg1 {% endblock header %}
+{% block movie %}
+<div class="side-bar col-lg-3">
+    {% include 'include/search.html' %}
+</div>
+    <div class="left-ads-display col-lg-9">
+        <div class="row">
+                <div class="col-md-4 product-men">
+                    <div class="product-shoe-info editContent text-center mt-lg-4">
+                        <div class="men-thumb-item">
+                            <img src="{{ random_item.poster.url }}" class="img-fluid" alt="">
+                        </div>
+                        <div class="item-info-product">
+                            <h4 class="">
+                                <a href="" class="editContent">
+                                    {{ random_item.title }}
+                                </a>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="grid-img-right mt-4 text-right bg bg1" >
+            {% include 'include/pagination.html' %}
+        </div>
+    </div>
+{% endblock movie %}

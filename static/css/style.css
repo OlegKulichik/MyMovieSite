@@ -173,7 +173,7 @@ nav .menu li a:hover {
 }
 
 .menu li.active a {
-    color: #ff4c4c !important;
+    color: #f8f8f8 !important;
 }
 
 /* Hide Dropdowns by Default
@@ -913,9 +913,9 @@ ul.w3layouts-box-list li {
 
 }
 
-.desc1-left {
+/* .desc1-left {
     border: 1px solid #ddd;
-}
+} */
 
 .desc1-right h3 {
     text-shadow: 0 1px 0 #ffffff;
@@ -1036,7 +1036,7 @@ h3.sear-head {
     transition: all .2s ease-in-out;
     font-family: Roboto, sans-serif;
     font-size: 16px;
-    color: #6163b9
+    color: #ff4c4c
 }
 
 @media only screen and (max-width: 767px) {
@@ -1047,7 +1047,7 @@ h3.sear-head {
 
 @media only screen and (min-width: 1025px) {
     .pagination a.pagination__link:hover {
-        background: rgba(102, 88, 175, .15)
+        background: rgba(255, 255, 255, 0.15)
     }
 }
 
@@ -1095,18 +1095,18 @@ h3.sear-head {
 @media only screen and (min-width: 1025px) {
     .pagination__item.active:hover
     .pagination__link {
-        color: #fff;
-        background: #6658af
+        color: #3b3838;
+        background: #ff4c4c
     }
 }
 
 .pagination__item.active .pagination__link {
-    color: #fff;
-    background: #6658af
+    color: #ff4c4c;
+    background: #3b3838
 }
 
 .pagination__item--dots .pagination__link {
-    color: #bfc0f1
+    color: #0000ff
 }
 
 /* --/Pagination */
@@ -1712,8 +1712,8 @@ a.move-top span {
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    color: #fff;
-    height: 3000px;
+    color: #ffffff;
+    /* height: 3000px; */
   }
 
   .slider {

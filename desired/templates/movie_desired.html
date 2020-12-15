@@ -2,6 +2,9 @@
 {% block title %} {% endblock title %}
 {% block header %} bg1 {% endblock header %}
 {% block movie %}
+<div class="side-bar col-lg-3">
+    {% include 'include/search.html' %}
+</div>
     <div class="left-ads-display col-lg-9">
         <div class="row">
             {% for movie in movie_desired %}

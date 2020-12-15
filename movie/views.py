@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.base import View
 from django.shortcuts import redirect
 from .models import Movie, Category, Genre
+import random
 
 
 
@@ -19,19 +20,19 @@ class GenreYearCategory:
         return Movie.objects.all().values("year")
     
 
-
 class MoviesView(GenreYearCategory, ListView):
 
     model = Movie
     queryset = Movie.objects.all()
     template_name="movie_list.html"
-    paginate_by = 3
+    paginate_by = 6
+
 
 class LastMoviesView(GenreYearCategory, ListView):
-
+    
     model = Movie
     queryset = Movie.objects.order_by("-id")[:5]
-    template_name="movie_last.html"
+    template_name="movie_list.html"
     paginate_by = 3
 
 class MovieDetailView(GenreYearCategory, DetailView):
@@ -69,3 +70,10 @@ class FilterMoviesView(GenreYearCategory, ListView):
         context["genre"] = ''.join([f"genre={x}&" for x in self.request.GET.getlist("genre")])
         context["category"] = ''.join([f"category={x}&" for x in self.request.GET.getlist("category")])
         return context
+
+class RandomMovies(View):
+
+    def get(self, request):
+        movie = Movie.objects.all()
+        random_item = random.choice(movie)
+        return render(request, template_name="movie_random.html", context={'random_item':random_item})
