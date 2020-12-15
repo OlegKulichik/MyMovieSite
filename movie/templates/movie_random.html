@@ -1,11 +1,16 @@
 {% extends 'base_movie.html' %}
 {% block title %} {% endblock title %}
 {% block header %} bg1 {% endblock header %}
+
 {% block movie %}
 <div class="side-bar col-lg-3">
     {% include 'include/search.html' %}
 </div>
     <div class="left-ads-display col-lg-9">
+        <h1>
+            <a class="editContent"
+               style="outline: none; outline-offset: -2px; cursor: inherit; color: #ff4c4c; font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: Source Sans Pro;">Случайный фильм</a>
+        </h1>
         <div class="row">
                 <div class="col-md-4 product-men">
                     <div class="product-shoe-info editContent text-center mt-lg-4">
@@ -14,7 +19,7 @@
                         </div>
                         <div class="item-info-product">
                             <h4 class="">
-                                <a href="" class="editContent">
+                                <a href="{% url 'movie_detail' random_item.url %}" class="editContent">
                                     {{ random_item.title }}
                                 </a>
                             </h4>

@@ -15,25 +15,32 @@
             <form action="{% url 'filter' %}" method="get" name="filter"></form>
             <ul class="menu mt-2">
                 <li class="active"><a href="{% url 'home'%}">Главная</a></li>
+                <li class="active"><a href="{% url 'random_movie'%}">Случайный</a></li>
+                <li class="active"><a href="{% url 'last_movie'%}">Новинки на сайте</a></li>
+                {% if user.is_authenticated %}
                 <li class="active"><a href="{% url 'movie_desired'%}">Посмотреть позже</a></li>
                 <li>
-                    {% if user.is_authenticated %}
-                        <span>{{ user.username }}</span>
-                        <a href="{% url 'logout' %}"
-                           style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
-                            Выход
-                        </a>
-                    {% else %}
-                        <a href="{% url 'login' %}"
-                           style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
-                            Вход
-                        </a>
-                         <a href="{% url 'register' %}"
-                           style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
-                            Регистрация
-                        </a>
-                    {% endif %}
+                    <a href="{% url 'logout' %}"
+                      style="color: #ff4c4c">
+                        {{ user.username }}
+                    </a>
+                    <a href="{% url 'logout' %}"
+                      style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
+                        Выход
+                    </a>
                 </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'login' %}"
+                      style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
+                        Вход
+                    </a>
+                    <a href="{% url 'register' %}"
+                        style="color: rgb(255, 255, 255); font-weight: 700; text-transform: uppercase;">
+                        Регистрация
+                    </a>
+                </li>
+                {% endif %}
             </ul>
         </form>
         </nav>

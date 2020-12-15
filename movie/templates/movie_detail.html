@@ -48,13 +48,14 @@
                     <li style="color:#000000">
                         <span><b>Сборы в мире:</b> ${{ movie.fess_in_world }}</span>
                     </li>
-                    
+                    {% if user.is_authenticated %}
                     <form action="{% url 'add_desired' movie.id %}" method="POST" class="mt-4">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-dark">
                             <big style="color:#ff4c4c">Посмотреть позже</big>
                         </button>
                     </form>
+                    {% endif %}
             </div>
         </div>
         <div class="row sub-para-w3layouts mt-5">

@@ -32,7 +32,7 @@ class LastMoviesView(GenreYearCategory, ListView):
     
     model = Movie
     queryset = Movie.objects.order_by("-id")[:5]
-    template_name="movie_list.html"
+    template_name="movie_new.html"
     paginate_by = 3
 
 class MovieDetailView(GenreYearCategory, DetailView):
