@@ -1794,3 +1794,15 @@ body {
     height: 500px;
     background: orange;
  }
+
+ .image {
+	position	: relative;
+	width		: 100%; /* for IE 6 */
+}
+
+h2 {
+	position	: absolute;
+	top		: 400px;
+	left		: 700px;
+	width		: 100%;
+}
