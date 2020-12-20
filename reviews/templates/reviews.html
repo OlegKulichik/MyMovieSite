@@ -36,8 +36,6 @@
            </button>
         </form>
         {% else %}
-        <form autocomplete="on" action="{% url 'add_review' movie.id %}" method="post" class="mt-4">
-            {% csrf_token %}
             <div class="form-group editContent">
                 <label for="contactcomment" class="editContent" style="color:#000000">
                     Ваш комментарий *
@@ -60,7 +58,10 @@
                     <input type="email" class="form-control border" name="email" id="contactemail" required="">
                 </div>
             </div>
-        </form>
+            <a href="{% url 'login' %}" >
+                <button class="mt-3 btn btn-dark btn-block py-3">
+                    <big style="color:#ff4c4c">Добавить в желаемое</big>
+                </button></a>
         {% endif %}
         </div>
         <!--  //contact form grid ends here -->

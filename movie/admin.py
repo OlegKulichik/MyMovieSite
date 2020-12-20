@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Movie, Category, Genre, RatingStar
+from .models import Movie, Category, Genre
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import forms
 from django.utils.safestring import mark_safe
@@ -53,5 +53,4 @@ class MovieAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(Genre)
-admin.site.register(RatingStar)
 

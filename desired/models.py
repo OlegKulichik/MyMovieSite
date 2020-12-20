@@ -9,6 +9,8 @@ class Desired(models.Model):
     def __str__(self):
         return f"{self.movie}"
 
+
     class Meta:
+        unique_together = (('movie'),)
         verbose_name = "Желаемое"
         verbose_name_plural = "Желаемые"

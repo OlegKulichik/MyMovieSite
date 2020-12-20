@@ -51,10 +51,27 @@
                     {% if user.is_authenticated %}
                     <form action="{% url 'add_desired' movie.id %}" method="POST" class="mt-4">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-dark">
-                            <big style="color:#ff4c4c">Посмотреть позже</big>
-                        </button>
+                        <button id="toggle" type="submit" class="mt-3 btn btn-dark btn-block py-3" onclick="myFunction()"><big style="color:#ff4c4c">Добавить в желаемое</big></button>
+                        <script>
+                
+                            function myFunction() {
+                                var change = document.getElementById("toggle");
+                                if (change.innerHTML == "Добавить в желаемое")
+                                {
+                                    change.innerHTML = "Добавлено в желаемое";
+                                }
+                                else {
+                                    change.innerHTML = "Добавить в желаемое";
+                                }
+                            }
+                
+                        </script>
                     </form>
+                    {% else %}
+                    <a href="{% url 'login' %}"" >
+                        <button class="mt-3 btn btn-dark btn-block py-3">
+                            <big style="color:#ff4c4c">Добавить в желаемое</big>
+                        </button></a>
                     {% endif %}
             </div>
         </div>
