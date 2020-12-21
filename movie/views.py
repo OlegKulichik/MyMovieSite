@@ -17,7 +17,7 @@ class GenreYearCategory:
         return Category.objects.all()
 
     def get_years(self):
-        return Movie.objects.all().values("year")
+        return Movie.objects.all().values("year").distinct("year")
     
 
 class MoviesView(GenreYearCategory, ListView):
@@ -54,11 +54,11 @@ class Search(GenreYearCategory, ListView):
 class FilterMoviesView(GenreYearCategory, ListView):
 
     template_name="movie_list.html"
-    paginate_by = 1
+    paginate_by = 3
 
     def get_queryset(self):
         queryset = Movie.objects.filter(
-            Q(year__in=self.request.GET.getlist("year")) |
+            Q(year__in=self.request.GET.getlist("year"))|
             Q(genres__in=self.request.GET.getlist("genre"))|
             Q(category__in=self.request.GET.getlist("category"))
         ).distinct()
